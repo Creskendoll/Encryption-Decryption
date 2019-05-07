@@ -1,7 +1,11 @@
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.Rectangle;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 
@@ -46,32 +50,32 @@ public class frame {
 		window = new JFrame();
 		window.getContentPane().setBackground(Color.DARK_GRAY);
 		window.setForeground(Color.DARK_GRAY);
-		window.setBackground(Color.WHITE);
-		window.setBounds(100, 100, 450, 300);
+		window.setBackground(Color.DARK_GRAY);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		window.getContentPane().setLayout(null);
-		
+		window.getContentPane().setLayout(new GridLayout(3,2));
+		window.setBounds(new Rectangle(50,50,640,480));
+
 		JTextArea textArea = new JTextArea();
-		textArea.setToolTipText("");
-		textArea.setBounds(12, 31, 198, 194);
+		textArea.setToolTipText("Text to Encrypt");
 		window.getContentPane().add(textArea);
 		textArea.setLineWrap(true);
-
+		textArea.setFont(new Font("SansSerif", Font.BOLD, 30));
+		textArea.setBorder(BorderFactory.createEtchedBorder());
 		
 		JTextArea textArea_1 = new JTextArea();
-		textArea_1.setToolTipText("");
-		textArea_1.setBounds(230, 31, 198, 194);
+		textArea_1.setToolTipText("Text to Decrypt");
+		textArea_1.setFont(new Font("SansSerif", Font.BOLD, 30));
 		window.getContentPane().add(textArea_1);
 		textArea_1.setLineWrap(true);
 
-		
+		textArea_1.setBorder(BorderFactory.createEtchedBorder());
+
 		JButton encrypt_button = new JButton("Encrypt");
 		encrypt_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				textArea_1.setText(ed.encrypt(textArea.getText()));			
 			}
 		});
-		encrypt_button.setBounds(12, 233, 117, 25);
 		window.getContentPane().add(encrypt_button);
 		
 		JButton decrypt_button = new JButton("Decrypt");
@@ -80,7 +84,6 @@ public class frame {
 				textArea.setText(ed.decrypt(textArea_1.getText()));
 			}
 		});
-		decrypt_button.setBounds(230, 233, 117, 25);
 		window.getContentPane().add(decrypt_button);
 
 		JButton open_file_button = new JButton("Open");
@@ -100,7 +103,6 @@ public class frame {
 				}
 			}
 		});
-		open_file_button.setBounds(12, 0, 117, 25);
 		window.getContentPane().add(open_file_button);
 
 		JButton save_file_button = new JButton("Save as .txt");
@@ -125,7 +127,6 @@ public class frame {
 				}
 			}
 		});
-		save_file_button.setBounds(297, 0, 131, 25);
 		window.getContentPane().add(save_file_button);
 	}
 }
